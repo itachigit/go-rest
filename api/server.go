@@ -1,7 +1,8 @@
 package api
 
 import (
-	"github.com/itachigit/goREST/config"
+	"go-cowin/config"
+
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -18,4 +19,11 @@ func NewCowinServer(config *config.Config, logger *logrus.Logger, db *gorm.DB) C
 		logger: logger,
 		db:     db,
 	}
+}
+
+func (svr *CowinServer) GetLogger(val string) *logrus.Entry {
+	logger := svr.logger.WithFields(logrus.Fields{
+		"method": val,
+	})
+	return logger
 }

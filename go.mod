@@ -1,4 +1,4 @@
-module github.com/itachigit/goREST
+module go-cowin
 
 go 1.17
 

@@ -44,7 +44,7 @@ func (cfg *Config) Connect() *gorm.DB {
 		cfg.DB.DbHost, cfg.DB.DbUser, cfg.DB.DbPass, cfg.DB.DbName, cfg.DB.DbPort)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Error("error-connecting-database", err)
+		log.Error("error-connecting-database: ", err)
 	}
 	return db
 }
