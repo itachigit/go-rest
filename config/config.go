@@ -39,12 +39,9 @@ func LoadConfig() *Config {
 	return &config
 }
 
-func (cfg *Config) Connect() *gorm.DB {
+func (cfg *Config) Connect() (*gorm.DB, error) {
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
 		cfg.DB.DbHost, cfg.DB.DbUser, cfg.DB.DbPass, cfg.DB.DbName, cfg.DB.DbPort)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Error("error-connecting-database: ", err)
-	}
-	return db
+	return db, err
 }

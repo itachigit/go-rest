@@ -16,8 +16,16 @@ func main() {
 	cfg := config.LoadConfig()
 	logger := logrus.New()
 	logger.SetFormatter(&logrus.JSONFormatter{})
-	db := cfg.Connect()
-	db.AutoMigrate(&models.State{})
+	db, err := cfg.Connect()
+	if err != nil {
+		logger.Error("error-connecting-database: ", err)
+		return
+	}
+	err = db.AutoMigrate(&models.State{})
+	if err != nil {
+		logger.Error("Error while migrating database: ", err)
+		return
+	}
 	cowinServer := api.NewCowinServer(cfg, logger, db)
 	r.HandleFunc("/", cowinServer.GetState)
 	logger.Info("Starting the server")
