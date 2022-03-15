@@ -21,7 +21,7 @@ func main() {
 		logger.Error("error-connecting-database: ", err)
 		return
 	}
-	err = db.AutoMigrate(&models.State{})
+	err = db.AutoMigrate(&models.Entry{})
 	if err != nil {
 		logger.Error("Error while migrating database: ", err)
 		return

@@ -13,7 +13,7 @@ services:
   api:
     image: madwick/go:docker-go-cowin
     environment:
-      - COWIN_URL=https://cdn-api.co-vin.in/api
+      - COWIN_URL=https://api.publicapis.org
       - DB_USER=postgres
       - DB_PASS=password
       - DB_NAME=postgres

@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY go.mod ./
 COPY go.sum ./
-RUN apk add git
+
 RUN apk add postgresql-client
 RUN go mod download
 

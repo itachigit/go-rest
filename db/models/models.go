@@ -1,6 +1,7 @@
 package models
 
-type State struct {
-	StateId   int    `json:"state_id"`
-	StateName string `json:"state_name"`
+type Entry struct {
+	API         string `json:"API"`
+	Description string `json:"Description"`
+	Link        string `json:"Link"`
 }
