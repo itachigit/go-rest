@@ -1,4 +1,4 @@
-module go-cowin
+module go-rest
 
 go 1.17
 

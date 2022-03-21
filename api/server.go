@@ -1,7 +1,7 @@
 package api
 
 import (
-	"go-cowin/config"
+	"go-rest/config"
 
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"

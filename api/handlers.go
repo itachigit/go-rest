@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"go-cowin/db/models"
+	"go-rest/db/models"
 )
 
 func (svr *CowinServer) GetState(w http.ResponseWriter, r *http.Request) {

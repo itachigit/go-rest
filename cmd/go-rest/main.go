@@ -3,9 +3,9 @@ package main
 import (
 	"net/http"
 
-	"go-cowin/api"
-	"go-cowin/config"
-	"go-cowin/db/models"
+	"go-rest/api"
+	"go-rest/config"
+	"go-rest/db/models"
 
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
