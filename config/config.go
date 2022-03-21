@@ -10,7 +10,7 @@ import (
 )
 
 type Cowin struct {
-	Url string `env:"COWIN_URL, required, report"`
+	Url string `env:"API_URL, required, report"`
 }
 
 type DB struct {

@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 	"strings"
@@ -10,15 +9,30 @@ import (
 	"go-rest/db/models"
 )
 
+func (svr *CowinServer) GetExample(w http.ResponseWriter, r *http.Request) {
+	logger := svr.GetLogger("get-example-page")
+	logger.Info("entry")
+	res, err := http.Get("https://example.com")
+	if err != nil {
+		logger.Error("error-getting-response: ", err)
+	}
+	jsonBody, err := io.ReadAll(res.Body)
+	if err != nil {
+		logger.Error("error-reading-response")
+	}
+	w.Write(jsonBody)
+	logger.Info("exit")
+}
+
 func (svr *CowinServer) GetState(w http.ResponseWriter, r *http.Request) {
+	logger := svr.GetLogger("get-state")
+	logger.Info("entry")
 	req, err := http.NewRequest("GET", svr.config.Cowin.Url+"/entries", http.NoBody)
 	//req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36")
 	//req.Header.Set("Authorization", r.Header.Get("Authorization"))
-	logger := svr.GetLogger("get-state")
 	if err != nil {
 		logger.Error("error-creating-request: ", err)
 	}
-	logger.Info("entry")
 	client := http.Client{}
 	res, err := client.Do(req)
 	if err != nil {
@@ -45,7 +59,6 @@ func (svr *CowinServer) GetState(w http.ResponseWriter, r *http.Request) {
 		if count > 15 {
 			break
 		}
-		fmt.Print(count, " ")
 		db.FirstOrCreate(&entry, models.Entry{API: entry.API})
 		count++
 	}
@@ -56,7 +69,6 @@ func (svr *CowinServer) GetState(w http.ResponseWriter, r *http.Request) {
 		logger.Error("error-getting-entries-from-database: ", err)
 	}
 	jsonBody, err = json.Marshal(&entries1)
-	fmt.Println(len(entries1))
 	if err != nil {
 		logger.Error("error-marshaling-entries: ", err)
 	}

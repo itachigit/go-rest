@@ -28,6 +28,7 @@ func main() {
 	}
 	cowinServer := api.NewCowinServer(cfg, logger, db)
 	r.HandleFunc("/", cowinServer.GetState)
+	r.HandleFunc("/ex", cowinServer.GetExample)
 	logger.Info("Starting the server")
 	svr := &http.Server{
 		Handler: r,

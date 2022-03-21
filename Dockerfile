@@ -12,6 +12,6 @@ RUN go mod download
 
 COPY . .
 
-RUN go build ./cmd/go-cowin/main.go
+RUN go build ./cmd/go-rest/main.go
 
 EXPOSE 8080
