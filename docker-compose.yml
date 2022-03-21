@@ -11,9 +11,9 @@ services:
       - db:/var/lib/postgresql/data
     container_name: gocowin_db
   api:
-    image: madwick/go-rest
+    image: madwick/go-rest:release1
     environment:
-      - COWIN_URL=https://api.publicapis.org
+      - API_URL=https://api.publicapis.org
       - DB_USER=postgres
       - DB_PASS=password
       - DB_NAME=postgres
